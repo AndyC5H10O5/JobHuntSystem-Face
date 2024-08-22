@@ -1,5 +1,8 @@
 <template>
+  <!-- 网页大logo图 -->
   <img alt="Vue logo" src="./assets/logo.png">
+
+  <!-- 自定义的HelloWorld标签 -->
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
@@ -7,7 +10,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'App',
+  name: 'App.vue根组件',
   components: {
     HelloWorld
   }

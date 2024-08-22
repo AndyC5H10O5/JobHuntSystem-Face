@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <!-- 自带的网页的主要文字 -->
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
