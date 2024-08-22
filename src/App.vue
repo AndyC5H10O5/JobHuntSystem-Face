@@ -1,22 +1,22 @@
 <template>
-  <!-- 网页大logo图 -->
-  <img alt="Vue logo" src="./assets/logo.png" />
-
-  <!-- 3.使用组件: 自定义标签 -->
-  <test> </test>
-  <test> </test>
+  <test
+    title="New Apple Product"
+    description="Discover the latest innovations from Apple."
+    actionText="Buy Now"
+    @action="handleAction"
+  />
 </template>
 
 <script>
 // 1. 导入组件
-import test from './components/test.vue'
+import test from "./components/test.vue";
 
 export default {
   name: "App.vue根组件",
 
   // 2. 注册组件
   components: {
-    test
+    test,
   },
 };
 </script>
