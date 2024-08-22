@@ -8,5 +8,4 @@ import { createApp } from 'vue' // 导入vue的createApp方法
 import App from './App.vue'     // 导入了App.vue中的App
                                 // 自己创建的js文件也可以通过import方式导入
 
-
 createApp(App).mount('#app') // 程序的入口, mount到了#app标签上 ( /public/index.html 中)
