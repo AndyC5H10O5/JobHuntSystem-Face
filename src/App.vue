@@ -1,20 +1,23 @@
 <template>
   <!-- 网页大logo图 -->
-  <img alt="Vue logo" src="./assets/logo.png">
+  <img alt="Vue logo" src="./assets/logo.png" />
 
-  <!-- 自定义的HelloWorld标签 -->
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- 3.使用Helloworld组件: 自定义标签 -->
+  <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// 1. 导入HelloWorld组件
+import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
-  name: 'App.vue根组件',
+  name: "App.vue根组件",
+
+  // 2. 注册组件
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+};
 </script>
 
 <style>
