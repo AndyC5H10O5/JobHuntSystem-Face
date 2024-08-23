@@ -6,6 +6,11 @@
 
 import { createApp } from 'vue' // 导入vue的createApp方法
 import App from './App.vue'     // 导入了App.vue中的App
-                                // 自己创建的js文件也可以通过import方式导入
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+// 自己创建的js文件也可以通过import方式导入
 
-createApp(App).mount('#app') // 程序的入口, mount到了#app标签上 ( /public/index.html 中)
+const app = createApp(App)  // 程序的入口
+
+app.use(ElementPlus)        // 全局注册了第三方组件(区别于components:{}局部注册)
+app.mount('#app')           // mount到了#app标签上 ( /public/index.html 中)
