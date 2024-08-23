@@ -3,14 +3,21 @@
  * 通过import来导入各种模块, 来完成前端代码的组织
  * (早期的前端代码主要通过<script>标签来引入其他的js文件)
  */
-
+// 自己创建的js文件也可以通过import方式导入
 import { createApp } from 'vue' // 导入vue的createApp方法
 import App from './App.vue'     // 导入了App.vue中的App
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-// 自己创建的js文件也可以通过import方式导入
+import axios from 'axios'
 
-const app = createApp(App)  // 程序的入口
+// 配置请求根路径，组件发网络请求直接写后半段
+axios.defaults.baseURL = "http://localhost:8088" 
 
-app.use(ElementPlus)        // 全局注册了第三方组件(区别于components:{}局部注册)
-app.mount('#app')           // mount到了#app标签上 ( /public/index.html 中)
+const app = createApp(App) // 创建app
+
+// 将axios作为全局的自定义属性(挂到Vue身上)，每个组件可以直接在内部调用（减少重复import）
+app.config.globalProperties.$http = axios
+// 全局注册了第三方组件(区别于components:{}局部注册)
+app.use(ElementPlus)
+
+app.mount('#app')           // 程序入口，mount到了#app标签上 ( /public/index.html 中)
