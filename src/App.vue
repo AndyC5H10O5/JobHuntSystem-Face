@@ -20,6 +20,7 @@
 import apple from "./components/apple.vue";
 import movie from "./components/movie.vue";
 import Hello from "./components/Hello.vue";
+import axios from 'axios';
 
 export default {
   name: "App.vue根组件",
@@ -32,6 +33,20 @@ export default {
         { id: 3, title: "流浪地球2", rating: 9.1 },
       ],
     };
+  },
+  /*
+   * 生命周期函数create（区别于methods自定义函数）
+   * 当组件被创建时，该函数会被自动调用
+   * “网络请求”函数一般写在此处，即页面被挂载之前
+   */
+  created:function(){
+    console.log("根组件被创建了")
+    axios.get("http://localhost:8088/job/findAllJob").then(function(response){
+      console.log(response)
+    })
+  },
+  mounted:function(){
+    console.log("根组件被挂载(渲染)了")
   },
 
   // 2. 注册组件

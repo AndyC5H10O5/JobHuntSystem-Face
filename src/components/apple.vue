@@ -35,6 +35,12 @@ export default {
       default: "Learn More",
     },
   },
+  created:function(){
+    console.log("Apple组件被创建了")
+  },
+  mounted:function(){
+    console.log("Apple组件被挂载(渲染)了")
+  },
   methods: {
     onActionClick() {
       this.$emit("action");

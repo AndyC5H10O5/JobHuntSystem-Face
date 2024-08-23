@@ -34,5 +34,11 @@ export default {
       ],
     };
   },
+  created:function(){
+    console.log("Hello组件被创建了")
+  },
+  mounted:function(){
+    console.log("Hello组件被挂载(渲染)了")
+  },
 };
 </script>
