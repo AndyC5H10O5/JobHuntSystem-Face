@@ -9,6 +9,7 @@ import App from './App.vue'     // 导入了App.vue中的App
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import axios from 'axios'
+import router from './router/route'
 
 // 配置请求根路径，组件发网络请求直接写后半段
 axios.defaults.baseURL = "http://localhost:8088" 
@@ -19,5 +20,6 @@ const app = createApp(App) // 创建app
 app.config.globalProperties.$http = axios
 // 全局注册了第三方组件(区别于components:{}局部注册)
 app.use(ElementPlus)
+app.use(router)
 
 app.mount('#app')           // 程序入口，mount到了#app标签上 ( /public/index.html 中)
