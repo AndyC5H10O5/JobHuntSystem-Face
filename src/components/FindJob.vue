@@ -1,11 +1,25 @@
 <template>
-  <el-table :data="tableData" stripe style="width: 100%">
-    <!-- 注意prop字段为驼峰风格（与java类属性名保持一致），而不是数据库的下划线风格！！！ -->
-    <el-table-column prop="company" label="公司" width="180" />
-    <el-table-column prop="jobName" label="岗位" width="180" />
-    <el-table-column prop="workTime" label="实习时间(月)" width="180" />
-    <el-table-column prop="dailySalary" label="日薪" />
-  </el-table>
+  <div>
+    <el-table :data="tableData" stripe style="width: 100%">
+      <!-- 注意prop字段为驼峰风格（与java类属性名保持一致），而不是数据库的下划线风格！！！ -->
+      <el-table-column prop="company" label="公司" width="180" />
+      <el-table-column prop="jobName" label="岗位" width="180" />
+      <el-table-column prop="workTime" label="实习时间(月)" width="180" />
+      <el-table-column prop="dailySalary" label="日薪" />
+    </el-table>
+    <router-link to="/job/1"> 小米 </router-link>
+    <router-link to="/job/2"> 华为 </router-link>
+    <router-link to="/job/3"> 腾讯 </router-link>
+
+    <hr />
+    <!-- 子路由链接 -->
+    <router-link to="/job/announcement"> 公告 </router-link>
+    <router-link to="/job/chat"> 论坛 </router-link>
+    <hr />
+
+    <!-- 公司信息，公告、论坛都会加载到此 -->
+    <router-view> </router-view>
+  </div>
 </template>
 
 <script>
@@ -19,7 +33,7 @@ export default {
   created: function () {
     console.log("FindJob组件被创建了");
     // axios.get("http://localhost:8088/job/findAllJob").then(function(response){
-    //   this.tableData = response.data 
+    //   this.tableData = response.data
     // })                                   // error：this的作用域缩小，无法关联到Vue对象（Js语法）
 
     // this.$http 替代 axios （main.js中全局配置过了，无需导入）

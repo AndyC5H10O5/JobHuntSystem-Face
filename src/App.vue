@@ -3,8 +3,6 @@
   <router-link to="/job"> 寻找工作 </router-link>
   <hr>
   <router-link to="/stu"> 管理学生 </router-link>
-  <hr>
-  <router-link to="/sign">  </router-link>
 
   <!-- 声明路由占位标签, 点击链接后，界面被渲染到此处 -->
   <router-view> </router-view>
@@ -13,8 +11,8 @@
 
 <script>
 // 导入组件
-import FindJob from "./components/FindJob.vue";
-import Student from './components/Student.vue';
+// import FindJob from "./components/FindJob.vue";
+// import Student from './components/Student.vue';
 
 export default {
   name: "App.vue根组件",
@@ -31,8 +29,8 @@ export default {
 
   // 注册组件
   components: {
-    FindJob,
-    Student
+    // FindJob,
+    // Student
   },
 };
 </script>
