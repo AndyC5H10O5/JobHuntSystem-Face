@@ -1,4 +1,6 @@
 <template>
+  <Vuextest> </Vuextest>
+  <hr>
   <!-- 声明路由链接 -->
   <router-link to="/job"> 寻找工作 </router-link>
   <hr>
@@ -11,8 +13,7 @@
 
 <script>
 // 导入组件
-// import FindJob from "./components/FindJob.vue";
-// import Student from './components/Student.vue';
+import Vuextest from './components/Vuextest.vue';
 
 export default {
   name: "App.vue根组件",
@@ -29,8 +30,7 @@ export default {
 
   // 注册组件
   components: {
-    // FindJob,
-    // Student
+    Vuextest
   },
 };
 </script>
