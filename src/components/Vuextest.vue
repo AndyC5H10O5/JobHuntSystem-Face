@@ -24,6 +24,7 @@ export default {
       return this.$store.getters.doneTodos;
     }
   },
+  
   methods: {
     add() {
       this.$store.commit("increment", 2);
