@@ -32,7 +32,7 @@ export default {
    */
   created: function () {
     console.log("FindJob组件被创建了");
-    // axios.get("http://localhost:8088/job/findAllJob").then(function(response){
+    // axios.get("/job/findAllJob").then(function(response){
     //   this.tableData = response.data
     // })                                   // error：this的作用域缩小，无法关联到Vue对象（Js语法）
 

@@ -13,8 +13,9 @@ import router from "./router"; // index.js无需写明
 import store from "./store";
 // import "./mock";
 
-// 配置请求根路径，组件发网络请求直接写后半段
-axios.defaults.baseURL = "http://localhost:8088";
+// 配置请求根路径（与后端.properties保持一致）
+// axios.defaults.baseURL = "http://localhost:8081"; // 开发阶段
+axios.defaults.baseURL = "http://8.134.129.163:8081"; // 生产阶段
 
 const app = createApp(App); // 创建app
 
