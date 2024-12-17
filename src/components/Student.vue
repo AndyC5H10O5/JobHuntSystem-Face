@@ -6,20 +6,54 @@
     <el-table-column prop="major" label="专业" width="180" />
     <el-table-column prop="gpa" label="绩点" />
   </el-table>
+
+  <label for="a">学号:</label>
+  <input type="text" id="a" v-model="stuID" /> <br />
+  <label for="b">姓名:</label>
+  <input type="text" id="b" v-model="name" /> <br />
+  <label for="c">专业:</label>
+  <input type="text" id="c" v-model="major" /> <br />
+  <label for="d">绩点:</label>
+  <input type="text" id="d" v-model="gpa" /> <br />
+  <button @click="add">提交</button>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   created: function () {
     // this.$http 替代 axios （main.js中全局配置过了，无需导入）
     // 全栈开发关键分水岭：前后端正式通信了！
-    this.$http.get("/user/findAllStudents").then((response) => {
+    this.$http.get("/stu/findAllStudents").then((response) => {
       this.tableData = response.data; // 把后端拿到的数据交给前端
     });
   },
-  data() {
+  methods: {
+    add() {
+      // 全栈开发关键分水岭：前后端正式通信了！
+      let param = new URLSearchParams();
+      param.append("stuID", this.stuID);
+      param.append("name", this.name);
+      param.append("major", this.major);
+      param.append("GPA", this.gpa);
+      this.$http({
+        method: "post",
+        url: "/stu/addStudent",
+        data: param,
+      });
+
+      axios.get("/stu/findAllStudents").then((response) => {
+        this.tableData = response.data; // 把后端拿到的数据交给前端
+      });
+    },
+  },
+  data: function () {
     return {
       tableData: [],
+      stuID: "",
+      name: "",
+      major: "",
+      gpa: "",
     };
   },
 };

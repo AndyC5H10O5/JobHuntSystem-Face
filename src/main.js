@@ -14,8 +14,8 @@ import store from "./store";
 // import "./mock";
 
 // 配置请求根路径（与后端.properties保持一致）
-// axios.defaults.baseURL = "http://localhost:8081"; // 开发阶段
-axios.defaults.baseURL = "http://8.134.129.163:8081"; // 生产阶段
+axios.defaults.baseURL = "http://localhost:8081"; // 开发阶段
+// axios.defaults.baseURL = "http://8.134.129.163:8088"; // 生产阶段
 
 const app = createApp(App); // 创建app
 

@@ -1,5 +1,4 @@
 <template>
-  <Vuextest> </Vuextest>
   <hr>
   <!-- 声明路由链接 -->
   <router-link to="/job"> 寻找工作 </router-link>
@@ -30,7 +29,7 @@ export default {
 
   // 注册组件
   components: {
-    Vuextest
+    Vuextest,
   },
 };
 </script>
