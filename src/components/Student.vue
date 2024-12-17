@@ -36,14 +36,15 @@ export default {
       param.append("name", this.name);
       param.append("major", this.major);
       param.append("GPA", this.gpa);
-      this.$http({
+      axios({
         method: "post",
         url: "/stu/addStudent",
         data: param,
-      });
-
-      axios.get("/stu/findAllStudents").then((response) => {
-        this.tableData = response.data; // 把后端拿到的数据交给前端
+      }).then((response) => {
+        console.log(response.data);
+        axios.get("/stu/findAllStudents").then((response) => {
+          this.tableData = response.data; // 把后端拿到的数据交给前端
+        });
       });
     },
   },
