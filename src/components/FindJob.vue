@@ -8,29 +8,25 @@
       <el-table-column prop="dailySalary" label="日薪" />
     </el-table>
 
-    <label for="e">id:</label>
-    <input type="text" id="e" v-model="id" /> <br />
     <label for="a">公司名:</label>
-    <input type="text" id="a" v-model="company" /> <br />
+    <el-input type="text" id="a" v-model="company" style="width: 200px" /> <br />
     <label for="b">岗位名:</label>
-    <input type="text" id="b" v-model="jobName" /> <br />
+    <el-input type="text" id="b" v-model="jobName" style="width: 200px"/> <br />
     <label for="c">工作时间:</label>
-    <input type="text" id="c" v-model="workTime" /> <br />
+    <el-input type="text" id="c" v-model="workTime" style="width: 200px"/> <br />
     <label for="d">日薪:</label>
-    <input type="text" id="d" v-model="dailySalary" /> <br />
-    <button @click="add">提交</button>
-
-    <br />
-
-    <router-link to="/job/1"> 小米 </router-link>
-    <router-link to="/job/2"> 华为 </router-link>
-    <router-link to="/job/3"> 腾讯 </router-link>
+    <el-input type="text" id="d" v-model="dailySalary" style="width: 200px"/> <br />
+    <el-button @click="add">添加</el-button>
+    <el-button @click="update">修改</el-button>
 
     <hr />
     <!-- 子路由链接 -->
     <router-link to="/job/announcement"> 公告 </router-link>
     <router-link to="/job/chat"> 论坛 </router-link>
     <hr />
+    <router-link to="/job/1"> 小米 </router-link>
+    <router-link to="/job/2"> 华为 </router-link>
+    <router-link to="/job/3"> 腾讯 </router-link>
 
     <!-- 公司信息，公告、论坛都会加载到此 -->
     <router-view> </router-view>
@@ -70,7 +66,10 @@ export default {
       // this.$http 替代 axios （main.js中全局配置过了，无需导入）
       // 全栈开发关键分水岭：前后端正式通信了！
       this.$http
-        .post("/job/insert", "id=123&company=123&jobName=123&dailySalary=123&workTime=123")
+        .post(
+          "/job/insert",
+          "id=123&company=123&jobName=123&dailySalary=123&workTime=123"
+        )
         .then((response) => {
           console.log(response.data);
           this.$http.get("/job/findAllJob").then((response) => {
