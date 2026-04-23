@@ -12,10 +12,10 @@
   <div>
     <el-table :data="tableData" stripe style="width: 100%">
       <!-- 注意prop字段为驼峰风格（与java类属性名保持一致），而不是数据库的下划线风格！！！ -->
-      <el-table-column prop="company" label="公司" width="180" />
-      <el-table-column prop="jobName" label="岗位" width="180" />
-      <el-table-column prop="workTime" label="实习时间(月)" width="180" />
-      <el-table-column prop="dailySalary" label="日薪" />
+      <el-table-column prop="id" label="编号" width="180" />
+      <el-table-column prop="stuId" label="学生" width="180" />
+      <el-table-column prop="jobId" label="岗位" width="180" />
+
       <el-table-column align="right">
         <template #default="scope">
           <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
@@ -34,22 +34,15 @@
 
     <label for="e">编号:</label>
     <el-input type="text" id="e" v-model="id" style="width: 200px" /> <br />
-    <label for="a">公司名:</label>
-    <el-input type="text" id="a" v-model="company" style="width: 200px" />
+    <label for="a">学生id:</label>
+    <el-input type="text" id="a" v-model="stuId" style="width: 200px" />
     <br />
-    <label for="b">岗位名:</label>
-    <el-input type="text" id="b" v-model="jobName" style="width: 200px" />
-    <br />
-    <label for="c">工作时间:</label>
-    <el-input type="text" id="c" v-model="workTime" style="width: 200px" />
-    <br />
-    <label for="d">日薪:</label>
-    <el-input type="text" id="d" v-model="dailySalary" style="width: 200px" />
+    <label for="b">岗位id:</label>
+    <el-input type="text" id="b" v-model="jobId" style="width: 200px" />
     <br />
     <el-button @click="add">添加</el-button>
     <el-button @click="update">修改</el-button>
     <hr />
-
     <router-view> </router-view>
   </div>
 </template>
@@ -57,21 +50,8 @@
 <script>
 import axios from "axios";
 export default {
-  /*
-   * 生命周期函数create（区别于methods自定义函数）
-   * 当组件被创建时，该函数会被自动调用
-   * “网络请求”函数一般写在此处，即页面被挂载之前
-   * 但是，“Get请求”实际发生在页面被挂载后，因为它是异步的
-   */
   created: function () {
-    console.log("FindJob组件被创建了");
-    // axios.get("/job/findAllJob").then(function(response){
-    //   this.tableData = response.data
-    // })                                   // error：this的作用域缩小，无法关联到Vue对象（Js语法）
-
-    // this.$http 替代 axios （main.js中全局配置过了，无需导入）
-    // 全栈开发关键分水岭：前后端正式通信了！
-    this.$http.get("/job/findAllJob").then((response) => {
+    this.$http.get("/multi/findAllMulti").then((response) => {
       // (response)=> 回调函数，且"作用域"与父级一致
       this.tableData = response.data; // 把后端拿到的数据交给了前端（tableData）！
     });
@@ -82,18 +62,16 @@ export default {
       // 全栈开发关键分水岭：前后端正式通信了！
       let param = new URLSearchParams();
       param.append("id", this.id);
-      param.append("company", this.company);
-      param.append("jobName", this.jobName);
-      param.append("dailySalary", this.dailySalary);
-      param.append("workTime", this.workTime);
+      param.append("stuId", this.stuId);
+      param.append("jobId", this.jobId);
       console.log(param);
       axios({
         method: "post",
-        url: "/job/addJob",
+        url: "/multi/addMulti",
         data: param,
       }).then((response) => {
         console.log(response.data);
-        axios.get("/job/findAllJob").then((response) => {
+        axios.get("/multi/findAllMulti").then((response) => {
           this.tableData = response.data; // 把后端拿到的数据交给前端
         });
       });
@@ -103,11 +81,11 @@ export default {
     handleDelete(index, row) {
       // 向服务器发送DELETE请求
       axios
-        .delete(`/job/deleteJob?id=${row.id}`)
+        .delete(`/multi/deleteMulti?id=${row.id}`)
         .then((response) => {
           console.log(response.data);
           // 删除成功后，更新表格数据
-          axios.get("/job/findAllJob").then((response) => {
+          axios.get("/multi/findAllMulti").then((response) => {
             this.tableData = response.data; // 更新表格数据
           });
         })
@@ -120,29 +98,24 @@ export default {
     handleEdit(index, row) {
       // 填充编辑表单
       this.id = row.id;
-      this.company = row.company;
-      this.jobName = row.jobName;
-      this.dailySalary = row.dailySalary;
-      this.workTime = row.workTime;
+      this.stuId = row.stuId;
+      this.jobId = row.jobId;
     },
     update() {
       // 发送PUT请求更新学生信息
       let param = new URLSearchParams();
       param.append("id", this.id);
-      param.append("company", this.company);
-      param.append("jobName", this.jobName);
-      param.append("dailySalary", this.dailySalary);
-      param.append("workTime", this.workTime);
-      console.log(param);
+      param.append("stuId", this.stuId);
+      param.append("jobId", this.jobId);
       axios({
         method: "put",
-        url: `/job/updateJob`,
+        url: `/multi/updateMulti`,
         data: param,
       })
         .then((response) => {
           console.log(response.data);
           // 更新表格数据
-          axios.get("/job/findAllJob").then((response) => {
+          axios.get("/multi/findAllMulti").then((response) => {
             this.tableData = response.data; // 更新表格数据
           });
         })
@@ -155,10 +128,8 @@ export default {
     return {
       tableData: [],
       id: "",
-      company: "",
-      jobName: "",
-      dailySalary: "",
-      workTime: "",
+      stuId: "",
+      jobId: "",
     };
   },
 };

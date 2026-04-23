@@ -1,18 +1,16 @@
 <template>
-  <hr>
+  <!-- <hr> -->
   <!-- 声明路由链接 -->
-  <router-link to="/job"> 寻找工作 </router-link>
+  <!-- <router-link to="/job"> 寻找工作 </router-link>
   <hr>
-  <router-link to="/stu"> 管理学生 </router-link>
+  <router-link to="/stu"> 管理学生 </router-link> -->
 
   <!-- 声明路由占位标签, 点击链接后，界面被渲染到此处 -->
   <router-view> </router-view>
-
 </template>
 
 <script>
 // 导入组件
-import Vuextest from './components/Vuextest.vue';
 
 export default {
   name: "App.vue根组件",
@@ -23,14 +21,12 @@ export default {
     };
   },
 
-  mounted:function(){
-    console.log("根组件被挂载(渲染)了")
+  mounted: function () {
+    console.log("根组件被挂载(渲染)了");
   },
 
   // 注册组件
-  components: {
-    Vuextest,
-  },
+  components: {},
 };
 </script>
 
